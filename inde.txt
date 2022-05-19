@@ -1,0 +1,183 @@
+In-order
+Traversal Sesuai Pesanan
+Dalam metode traversal ini, subtree kiri dikunjungi terlebih dahulu, kemudian root dan kemudian subtree kanan. Kita harus selalu ingat bahwa setiap node dapat mewakili subtree itu sendiri.
+
+Pre-order
+Dalam metode traversal ini, simpul akar dikunjungi terlebih dahulu, kemudian subpohon kiri dan terakhir subpohon kanan.
+
+Post-order 
+Dalam metode traversal ini, simpul akar dikunjungi terakhir, maka namanya. Pertama kita melintasi subpohon kiri, kemudian subpohon kanan dan akhirnya simpul akar.
+
+
+Traversal bertujuan menemukan atau mengunjungi setiap node dari tree. Terdapat 3 metoda traversal yang umum digunakan, yaitu:
+Pre-Order akan mulai dari root, lalu selalu mengunjungi node paling kiri dahalu sampai habis, lalu kekanan.
+In-Order akan memulai dari nilai dari yang paling kecil.
+Post-Order akan dimulai dari node paling kiri, kemudian kekanan, baru mengunjungi parent.
+
+Pre-order, in-order, dan post-order traversal
+Pre-order, in-order, dan post-order traversal mengunjungi setiap simpul dalam sebuah pohon dengan pengunjungan secara berulang-ulang pada sub pohon kiri dan kanan dari akarnya. Jika akarnya dikunjungi sebelum sub pohonnya, ini merupakan preoder. Jika akarnya dikunjungi sesudah sub pohonnya, ini dinamakan postorder dan jika akarnya dikunjungi di antara sub pohonnya, dinamakan inorder. In-order traversal sangat berguna dalam pohon biner terurut, di mana traversal ini mengunjungi simpul dalam urutan yang meningkat.
+
+Traversal
+Traversal adalah proses kunjungan dalam pohon, dengan setiap node hanya dikunjungi tepat satu kali.
+
+In-order Traversal
+
+class Node:
+
+    def __init__(self, data):
+
+        self.left = None
+        self.right = None
+        self.data = data
+# Insert Node
+    def insert(self, data):
+
+        if self.data:
+            if data < self.data:
+                if self.left is None:
+                    self.left = Node(data)
+                else:
+                    self.left.insert(data)
+            elif data > self.data:
+                if self.right is None:
+                    self.right = Node(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.data = data
+
+# Print the Tree
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+        print( self.data),
+        if self.right:
+            self.right.PrintTree()
+
+# Inorder traversal
+# Left -> Root -> Right
+    def inorderTraversal(self, root):
+        res = []
+        if root:
+            res = self.inorderTraversal(root.left)
+            res.append(root.data)
+            res = res + self.inorderTraversal(root.right)
+        return res
+
+root = Node(27)
+root.insert(14)
+root.insert(35)
+root.insert(10)
+root.insert(19)
+root.insert(31)
+root.insert(42)
+print(root.inorderTraversal(root))
+
+Pre-order Traversal
+
+class Node:
+
+    def __init__(self, data):
+
+        self.left = None
+        self.right = None
+        self.data = data
+# Insert Node
+    def insert(self, data):
+
+        if self.data:
+            if data < self.data:
+                if self.left is None:
+                    self.left = Node(data)
+                else:
+                    self.left.insert(data)
+            elif data > self.data:
+                if self.right is None:
+                    self.right = Node(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.data = data
+
+# Print the Tree
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+        print( self.data),
+        if self.right:
+            self.right.PrintTree()
+
+# Preorder traversal
+# Root -> Left ->Right
+    def PreorderTraversal(self, root):
+        res = []
+        if root:
+            res.append(root.data)
+            res = res + self.PreorderTraversal(root.left)
+            res = res + self.PreorderTraversal(root.right)
+        return res
+
+root = Node(27)
+root.insert(14)
+root.insert(35)
+root.insert(10)
+root.insert(19)
+root.insert(31)
+root.insert(42)
+print(root.PreorderTraversal(root))
+
+Post-order Traversal
+
+
+class Node:
+
+    def __init__(self, data):
+
+        self.left = None
+        self.right = None
+        self.data = data
+# Insert Node
+    def insert(self, data):
+
+        if self.data:
+            if data < self.data:
+                if self.left is None:
+                    self.left = Node(data)
+                else:
+                    self.left.insert(data)
+            elif data > self.data:
+                if self.right is None:
+                    self.right = Node(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.data = data
+
+# Print the Tree
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+        print( self.data),
+        if self.right:
+            self.right.PrintTree()
+
+# Postorder traversal
+# Left ->Right -> Root
+    def PostorderTraversal(self, root):
+        res = []
+        if root:
+            res = self.PostorderTraversal(root.left)
+            res = res + self.PostorderTraversal(root.right)
+            res.append(root.data)
+        return res
+
+root = Node(27)
+root.insert(14)
+root.insert(35)
+root.insert(10)
+root.insert(19)
+root.insert(31)
+root.insert(42)
+print(root.PostorderTraversal(root))
+
+https://favtutor.com/blogs/tree-traversal-python-with-recursion
